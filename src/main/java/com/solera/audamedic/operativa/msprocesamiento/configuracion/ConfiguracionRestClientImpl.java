@@ -33,8 +33,9 @@ public class ConfiguracionRestClientImpl implements ConfiguracionClient {
     public List<PortafolioDTO> getPortafoliosByProveedorId(Long id) {
         try {
             UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(baseUrl)
-                    .path("/portafolios/proveedor/")
-                    .path(id.toString());
+                    .path("/proveedores/")
+                    .path(id.toString())
+                    .path("/portafolios");
             ResponseEntity<PortafolioDTO[]> response = restTemplate.getForEntity(builder.toUriString(), PortafolioDTO[].class);
             return response.getBody() != null ? Arrays.asList(response.getBody()) : new ArrayList<>();
         } catch (RestClientException e) {
